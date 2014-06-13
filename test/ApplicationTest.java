@@ -1,8 +1,6 @@
-import org.junit.Test;
-import play.mvc.Result;
-
 import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.*;
+
+import org.junit.Test;
 
 
 /**
@@ -13,15 +11,11 @@ import static play.test.Helpers.*;
 */
 public class ApplicationTest {
 
-    @Test
-    public void badRoute() {
-        running(fakeApplication(), new Runnable() {
-            @Override
-            public void run() {
-                Result result = route(fakeRequest("GET", "/xx/Kiki"));
-                assertThat(result).isNull();
-            }
-        });
+    @Test 
+    public void simpleCheck() {
+        int a = 1 + 1;
+        assertThat(a).isEqualTo(2);
     }
 
+   
 }
