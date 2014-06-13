@@ -16,7 +16,7 @@
                 }
                 
                @form(routes.Application.viewTemplate(template.id)) {
-                    <input type="submit" value="View">
+                    <input type="submit" value="ViewRendered">
                 }
             </li>
         }
@@ -27,7 +27,7 @@
     @form(routes.Application.newTemplate()) {
         
         @inputText(templateForm("label"))
-         @inputText(templateForm("htmlText"))  
+         @textarea(templateForm("htmlText"))  
         
         <input type="submit" value="Create">
         
