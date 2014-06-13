@@ -9,44 +9,52 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import javax.persistence.*;
 
-public class Task{
+public class Template{
     
   @Id
   @ObjectId
   public String id;
 
   public String label;
+  
+  public String htmlText;
 
-  private static JacksonDBCollection<Task, String> coll = MongoDB.getCollection("tasks", Task.class, String.class);
+  private static JacksonDBCollection<Template, String> coll = MongoDB.getCollection("templates", Template.class, String.class);
 
-  public Task(){
+  public Template(){
 
   }
 
-  public Task(String label) {
+  public Template(String label, String htmlText) {
     this.label = label;
+    this.htmlText = htmlText;
   }
 
-  public static List<Task> all() {
-    return Task.coll.find().toArray();
+  public static List<Template> all() {
+    return Template.coll.find().toArray();
   }
 
-  public static void create(Task task) {
-    Task.coll.save(task);
+  public static void create(Template template) {
+    Template.coll.save(template);
   }
 
-  public static void create(String label){
-      create(new Task(label));
+  public static void create(String label, String htmlText){
+      create(new Template(label, htmlText));
   }
 
   public static void delete(String id) {
-    Task task = Task.coll.findOneById(id);
-    if (task != null)
-        Task.coll.remove(task);
+    Template template = Template.coll.findOneById(id);
+    if (template != null)
+        Template.coll.remove(template);
   }
+  
+  public static Template view(String id) {
+	    return Template.coll.findOneById(id);
+	  }
+
 
   public static void removeAll(){
-    Task.coll.drop();
+    Template.coll.drop();
   }
 
 }
